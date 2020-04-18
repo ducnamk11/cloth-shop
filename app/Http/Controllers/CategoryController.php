@@ -25,7 +25,7 @@ class CategoryController extends Controller
     public function add()
     {
         $htmlOption = $this->getCategory();
-        return view('category.add', compact('htmlOption'));
+        return view('admin.category.add', compact('htmlOption'));
     }
 
 
@@ -46,7 +46,7 @@ class CategoryController extends Controller
     {
         $category = $this->category->find($id);
         $htmlOption = $this->getCategory($category->parent_id);
-         return view('category.edit', compact('category','htmlOption'));
+         return view(CATEGORY_EDIT, compact('category','htmlOption'));
 
     }
  public function update(Request $request, $id)

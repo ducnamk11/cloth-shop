@@ -30,16 +30,21 @@
                 <li class="nav-item">
                     <a href="{{route(CATEGORY_INDEX)}}" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
-                        <p>  Danh mục sản phẩm
+                        <p> Danh mục sản phẩm
                             <span class="right badge badge-danger">New</span>
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-
                     <a href="{{route(MENU_INDEX)}}" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
-                        <p>  Menus </p>
+                        <p> Menus </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route(PRODUCT_INDEX)}}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p> Sản Phẩm </p>
                     </a>
                 </li>
             </ul>
