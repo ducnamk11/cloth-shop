@@ -8,7 +8,7 @@
 @section('content')
     <div class="content-wrapper">
         @include('partials.content_header',['name'=>'Product','key'=>'Add'])
-        <form method="post" action="" enctype="multipart/form-data">
+        <form method="post" action="{{route(PRODUCT_STORE)}}" enctype="multipart/form-data">
             @csrf
             <div class="content">
                 <div class="container-fluid">
@@ -41,7 +41,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Chọn danh mục cha</label>
-                                <select class="form-control select2_init " name="parent_id">
+                                <select class="form-control select2_init " name="category_id">
                                     <option value="">Danh mục</option>
                                     {!! $htmlOption !!}
                                 </select>
@@ -53,7 +53,7 @@
                         <div class="col-md-8">
                             <div class="form-group">
                                 <label>Nội dung</label>
-                                <textarea name="content" class="form-control tinymce_editor_init" rows="8"></textarea>
+                                <textarea name="contents" class="form-control tinymce_editor_init" rows="12"></textarea>
                             </div>
                         </div>
 
@@ -71,5 +71,6 @@
     <script src="{{asset('admins/product/add/add.js')}}"></script>
     <script>
         const URL_FILEMANAGER='{{route("unisharp.lfm.show")}}';
-    </script>
+
+     </script>
 @endsection
