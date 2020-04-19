@@ -14,8 +14,6 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-6">
-                            {{--                        {{route(PRODUCT_STORE)}}--}}
-
                             <div class="form-group">
                                 <label>Tên sản phâm</label>
                                 <input name="name" type="text" class="form-control" placeholder="Nhập tên sản phẩm">

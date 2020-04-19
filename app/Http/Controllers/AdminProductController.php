@@ -9,7 +9,9 @@ use App\ProductImage;
 use App\ProductTag;
 use App\Tag;
 use App\Traits\StorageImageTrait;
+use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Storage;
 
 class AdminProductController extends Controller
@@ -32,8 +34,8 @@ class AdminProductController extends Controller
 
     public function index()
     {
-//        $products = $this->product->latest()->paginate(8);
-        return view(PRODUCT_INDEX); // compact('product')
+        $products = $this->product->latest()->paginate(8);
+        return view(PRODUCT_INDEX, compact('products'));
     }
 
 //
@@ -54,50 +56,59 @@ class AdminProductController extends Controller
 
     public function store(Request $request)
     {
-        $dataProductCreate = [
-            'name' => $request->name,
-            'price' => $request->price,
-            'content' => $request->contents,
-            'user_id' => auth()->id(),
-            'category_id' => $request->category_id
-        ];
-        $dataUploadFeatureImage = $this->storageTraitUpload($request, 'feature_image_path', 'product');
-        if (!empty($dataUploadFeatureImage)) {
-            $dataProductCreate['feature_image_name'] = $dataUploadFeatureImage['file_name'];
-            $dataProductCreate['feature_image_path'] = $dataUploadFeatureImage['file_path'];
-        };
-         $product = $this->product->create($dataProductCreate);
+        try {
+            DB::beginTransaction();
+            $dataProductCreate = [
+                'name' => $request->name,
+                'price' => $request->price,
+                'content' => $request->contents,
+                'user_id' => auth()->id(),
+                'category_id' => $request->category_id
+            ];
+            $dataUploadFeatureImage = $this->storageTraitUpload($request, 'feature_image_path', 'product');
+            if (!empty($dataUploadFeatureImage)) {
+                $dataProductCreate['feature_image_name'] = $dataUploadFeatureImage['file_name'];
+                $dataProductCreate['feature_image_path'] = $dataUploadFeatureImage['file_path'];
+            };
+            $product = $this->product->create($dataProductCreate);
 
-
-        //Insert data to prodyuct_image
-        if ($request->hasFile('image_path')) {
-            foreach ($request->image_path as $fileItem) {
-                $dataImageDetail = $this->storageTraitUploadMultiple($fileItem, 'product');
-                $product->images()->create([
-                    'image_path' => $dataImageDetail['file_path'],
-                    'image_name' => $dataImageDetail['file_name'],
-                ]);
+            //Insert data to product_image
+            if ($request->hasFile('image_path')) {
+                foreach ($request->image_path as $fileItem) {
+                    $dataImageDetail = $this->storageTraitUploadMultiple($fileItem, 'product');
+                    $product->images()->create([
+                        'image_path' => $dataImageDetail['file_path'],
+                        'image_name' => $dataImageDetail['file_name'],
+                    ]);
+                }
+            };
+            //Insert taag to product
+            if (!empty($request->tags)) {
+                foreach ($request->tags as $tagItem) {
+                    $tagInstance = $this->tag->firstOrCreate(['name' => $tagItem]);
+                    $tagIds[] = $tagInstance;
+                    $this->product_tag->create([
+                        'product_id' => $product->id,
+                        'tag_id' => $tagInstance->id,
+                    ]);
+                }
             }
-        };
-        //Insert taag to product
-        foreach ($request->tags as $tagItem) {
-            $tagInstance = $this->tag->firstOrCreate(['name' => $tagItem]);
-            $tagIds[] = $tagInstance;
-            $this->product_tag->create([
-                'product_id' => $product->id,
-                'tag_id' => $tagInstance->id,
-            ]);
 
+
+            DB::commit();
+            return redirect('admin/product/');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            Log::error('message:' . $exception->getMessage() . 'line: ' . $exception->getLine());
         }
-//         $product->tags()->attach($tagIds);
 
     }
 
     public function edit($id)
     {
-//        $category = $this->category->find($id);
-//        $htmlOption = $this->getCategory($category->parent_id);
-//        return view(CATEGORY_EDIT, compact('category','htmlOption'));
+        $product = $this->product->find($id);
+         $htmlOption = $this->getCategory($product->category_id);
+        return view(PRODUCT_EDIT, compact('product','htmlOption')); //
 
     }
 //    public function update(Request $request, $id)

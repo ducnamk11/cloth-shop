@@ -15,4 +15,12 @@ class Product extends Model
     {
          return $this->belongsToMany(Tag::class,'product_tags', 'product_id','tag_id');
     }
+    public function category()
+    {
+         return $this->belongsTo(Category::class,'category_id',);
+    }
+    public function product_image()
+    {
+         return $this->hasMany(ProductImage::class,'product_id',);
+    }
 }

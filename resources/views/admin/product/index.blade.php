@@ -28,30 +28,33 @@
                             </tr>
                             </thead>
                             <tbody>
-{{--                            @foreach($products as $product)--}}
-{{--                                <tr>--}}
-{{--                                    <th scope="row">{{$product->id}}</th>--}}
-{{--                                    <td>{{$product->name}}</td>--}}
-{{--                                    <td>{{$product->name}}</td>--}}
-{{--                                    <td>{{$product->name}}</td>--}}
-{{--                                    <td>{{$product->name}}</td>--}}
-{{--                                    <td>--}}
-{{--                                        <a class="btn btn-default" href="{{route(PRODUCT_EDIT,['id'=>product->id])}}">Sửa</a>--}}
-{{--                                        <a onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger" href="{{route(PRODUCT_DELETE,['id'=>$product->id])}}">Xoá</a>--}}
-{{--                                    </td>--}}
-{{--                                </tr>--}}
-{{--                            @endforeach--}}
+                            @foreach($products as $product)
+                                <tr>
+                                    <th scope="row">{{$product->id}}</th>
+                                    <td>{{$product->name}}</td>
+                                    <td>{{number_format($product->price)}} vnđ</td>
+                                    <td>
+                                        <img style="width: 150px" src="{{asset($product->feature_image_path)}}" alt="">
+                                    </td>
+                                    <td>{{optional($product->category)->name}}</td>
+                                    <td>
+                                        <a class="btn btn-default" href="{{route(PRODUCT_EDIT,['id'=>$product->id])}}">Sửa</a>
+                                        <a onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"
+                                           href="{{route(PRODUCT_DELETE,['id'=>$product->id])}}">Xoá</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
                     <div class="col-md-12">
                         <div class="row">
-{{--                            {{$products->links()}}--}}
+                                                        {{$products->links()}}
                         </div>
                     </div>
                 </div>
-             </div>
+            </div>
         </div>
-     </div>
+    </div>
 
 @stop
