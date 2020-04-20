@@ -8,8 +8,8 @@
 @section('content')
     <div class="content-wrapper">
         @include('partials.content_header',['name'=>'Product','key'=>'Edit'])
-        <form method="post" action="" enctype="multipart/form-data">
-            {{--            {{route(PRODUCT_UPDATE)}}--}}
+        <form method="post" action=" {{route(PRODUCT_UPDATE,['id'=>$product->id])}}" enctype="multipart/form-data">
+
             @csrf
             <div class="content">
                 <div class="container-fluid">
@@ -53,7 +53,7 @@
                                 <label>Nhập tag cho sản phẩm </label>
                                 <select name="tags[]" class="form-control tags_select_choose" multiple="multiple">
                                      @foreach($product->tags as $tagItem)
-                                        <option selected value="{{$tagItem->id}}">{{$tagItem->name}}</option>
+                                        <option selected value="{{$tagItem->name}}">{{$tagItem->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

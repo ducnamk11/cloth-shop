@@ -1,7 +1,10 @@
 @extends('layout.admin')
 @section('title','Trang chủ')
 @section('css','')
-@section('js','')
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="{{asset('admins/product/index/list.js')}}"></script>
+@endsection
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -39,8 +42,9 @@
                                     <td>{{optional($product->category)->name}}</td>
                                     <td>
                                         <a class="btn btn-default" href="{{route(PRODUCT_EDIT,['id'=>$product->id])}}">Sửa</a>
-                                        <a onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"
-                                           href="{{route(PRODUCT_DELETE,['id'=>$product->id])}}">Xoá</a>
+                                        <a   data-url="{{route(PRODUCT_DELETE,['id'=>$product->id])}}" class="btn btn-danger action_delete"
+                                           >Xoá</a>
+{{--                                        href="{{route(PRODUCT_DELETE,['id'=>$product->id])}}"--}}
                                     </td>
                                 </tr>
                             @endforeach
@@ -49,7 +53,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="row">
-                                                        {{$products->links()}}
+                            {{$products->links()}}
                         </div>
                     </div>
                 </div>

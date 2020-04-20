@@ -10,3 +10,10 @@
 .feature_image{
     width: 250px;
 }
+
+.alert-danger{
+    padding: 3px;
+    margin-top: 5px;
+    background: #ffaeb5;
+    color: #000;
+}
