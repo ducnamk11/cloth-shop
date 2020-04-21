@@ -46,7 +46,11 @@ const FRONTEND_EDIT  = 'frontend.edit';
 const FRONTEND_UPDATE  = 'admin.setting.update';
 const FRONTEND_DELETE  = 'admin.setting.delete';
 
+/**
+ * FRONTEND
+ */
 
+const CATEGORY_DETAIL  = 'frontend.category';
 
 
 

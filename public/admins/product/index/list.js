@@ -17,7 +17,7 @@ function actionDelete(event) {
                 url: urlRequest,
                  success: function (data) {
                     if (data.code == 200) {
-                        that.parent().parent().parent().remove();
+                        that.parent().parent().remove();
                         Swal.fire(
                             'Deleted!',
                             'Your file has been deleted.',

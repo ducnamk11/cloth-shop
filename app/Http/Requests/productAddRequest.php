@@ -26,7 +26,7 @@ class productAddRequest extends FormRequest
         return [
             'name'=>'bail|required|min:5,max20|unique:products',
             'price'=>'bail|required|numeric|between:1000,1000000000',
-            'category_id'=>'required',
+//            'category_id'=>'required',
             'contents'=>'required',
             'feature_image_path'=>'required',
             'image_path'=>'required',

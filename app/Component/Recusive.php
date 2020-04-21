@@ -34,22 +34,23 @@ class Recusive
             if ($value['parent_id'] == 0) { // damnh mục cha
                 $this->htmlSelect .= '
                                 <div class="panel-heading">
-                                            <h4 class="panel-title">
-                                                  <a data-toggle="collapse" data-parent="#accordian" href="#' . $value['slug'] . '">
-                                                    <span class="badge pull-right"><i class="fa fa-plus"></i></span> ' . $value['name'] . '
-                                                </a>
-                                             </h4>
+                                    <h4 class="panel-title">
+                                    <a href="category/' . $value['id'] . '"> ' . $value['name'] . '</a>
+                                        <a  data-toggle="collapse" data-parent="#accordian" href="#' . $value['slug'] . '">
+                                            <span  class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                        </a>
+                                    </h4>
                                </div>
                                <div id="' . $value['slug'] . '" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                             <ul>';
-                                                        foreach ($this->data as $value1) { // danh mục thứ 2
-                                                            if ($value1['parent_id'] == $value['id']) {
-                                                                $this->htmlSelect .= '  <li><a href="#">' . $value1['name'] . ' </a></li>  ';
-                                                            }
-                                                        }
-                                                    $this->htmlSelect .= '
-                                              </ul>
+                                        <ul>';
+                                            foreach ($this->data as $value1) { // danh mục thứ 2
+                                                if ($value1['parent_id'] == $value['id']) {
+                                                    $this->htmlSelect .= '  <li><a href="category/' . $value1['id'] . '">' . $value1['name'] . ' </a></li>  ';
+                                                    }
+                                            }
+                                            $this->htmlSelect .= '
+                                        </ul>
                                     </div>
                                 </div>';
             }

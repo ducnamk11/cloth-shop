@@ -92,11 +92,12 @@ class AdminProductController extends Controller
                 }
             }
             DB::commit();
-            return redirect('admin/product/');
+
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::error('message:' . $exception->getMessage() . 'line: ' . $exception->getLine());
         }
+        return redirect('admin/product/');
     }
 
     public function edit($id)

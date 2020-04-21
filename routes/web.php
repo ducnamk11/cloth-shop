@@ -14,6 +14,7 @@
 Route::get('/admin', 'AdminController@loginAdmin')->name(ADMIN_LOGIN);
 Route::post('/admin', 'AdminController@postLoginAdmin')->name(ADMIN_LOGIN);
 Route::get('/', 'FrontendController@home')->name(HOME);
+Route::get('frontend/category/{id}', 'FrontendController@category')->name(CATEGORY_DETAIL);
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/home', function () { return view('admin/home'); })->name(ADMIN_HOME);

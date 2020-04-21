@@ -22,10 +22,20 @@ class FrontendController extends Controller
     public function home()
     {
         $sliders = $this->slider->paginate(8);
-        $news =  $this->product->latest()->take(6)->get();
+        $news = $this->product->latest()->take(6)->get();
         $htmlOption = $this->getCategory($parentId = '');
-        return view('frontend.home', compact('sliders','news','htmlOption'));
+        return view('frontend.home', compact('sliders', 'news', 'htmlOption'));
     }
+
+    public function category($id)
+    {
+        $category = $this->category->find($id);
+        $products = $this->category->find($id)->products;
+
+        $htmlOption = $this->getCategory($parentId = '');
+        return view('frontend.category', compact('htmlOption', 'category', 'products'));
+    }
+
 
     public function getCategory($parentId)
     {
