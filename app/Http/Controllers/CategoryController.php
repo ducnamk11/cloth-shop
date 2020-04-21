@@ -69,6 +69,4 @@ class CategoryController extends Controller
         $htmlOption = $recusive->CategoryRecusive($parentId);
         return $htmlOption;
     }
-
-
 }

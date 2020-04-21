@@ -23,16 +23,16 @@ class FrontendController extends Controller
     {
         $sliders = $this->slider->paginate(8);
         $news =  $this->product->latest()->take(6)->get();
-        $category = $this->category->all();
-//        dd($category);
-//        $htmlOption = $this->getCategory($parent_id = 0);
-        return view('frontend.home', compact('sliders','news'));
+        $htmlOption = $this->getCategory($parentId = '');
+        return view('frontend.home', compact('sliders','news','htmlOption'));
     }
+
     public function getCategory($parentId)
     {
         $data = $this->category->all();
         $recusive = new Recusive($data);
-        $htmlOption = $recusive->CategoryRecusive($parentId);
+        $htmlOption = $recusive->CategoryRecusiveMenu($parentId);
         return $htmlOption;
     }
+
 }

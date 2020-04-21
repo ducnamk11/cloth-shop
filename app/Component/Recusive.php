@@ -6,7 +6,7 @@ namespace App\Component;
 class Recusive
 {
     private $data;
-    private $htmlSelect='';
+    private $htmlSelect = '';
 
     public function __construct($data)
     {
@@ -27,16 +27,31 @@ class Recusive
         }
         return $this->htmlSelect;
     }
-    public function CategoryRecusiveMenu($parentId, $id = 0, $text = '')
+
+    public function CategoryRecusiveMenu($parentId, $text = '')
     {
         foreach ($this->data as $value) {
-            if ($value['parent_id'] == $id) {
-                if (!empty($parentId) && $parentId == $value['id']) {
-                    $this->htmlSelect .= '<option selected value="' . $value['id'] . '">' . $text . $value['name'] . '</option>';
-                } else {
-                    $this->htmlSelect .= '<option value="' . $value['id'] . '">' . $text . $value['name'] . '</option>';
-                }
-                $this->CategoryRecusive($parentId, $value['id'], $text . '- ');
+            if ($value['parent_id'] == 0) { // damnh mục cha
+                $this->htmlSelect .= '
+                                <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                  <a data-toggle="collapse" data-parent="#accordian" href="#' . $value['slug'] . '">
+                                                    <span class="badge pull-right"><i class="fa fa-plus"></i></span> ' . $value['name'] . '
+                                                </a>
+                                             </h4>
+                               </div>
+                               <div id="' . $value['slug'] . '" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                             <ul>';
+                                                        foreach ($this->data as $value1) { // danh mục thứ 2
+                                                            if ($value1['parent_id'] == $value['id']) {
+                                                                $this->htmlSelect .= '  <li><a href="#">' . $value1['name'] . ' </a></li>  ';
+                                                            }
+                                                        }
+                                                    $this->htmlSelect .= '
+                                              </ul>
+                                    </div>
+                                </div>';
             }
         }
         return $this->htmlSelect;
