@@ -41,7 +41,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Ảnh chi tiết </label>
-                                <input  value="{{old('image_path')}}   multiple name="image_path[]" type="file" class="form-control-file  @error('image_path') is-invalid @enderror">
+                                <input multiple value="{{old('image_path')}} "   name="image_path[]" type="file" class="form-control-file  @error('image_path') is-invalid @enderror">
                                 @error('image_path')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror

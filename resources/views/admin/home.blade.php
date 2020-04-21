@@ -4,7 +4,7 @@
 @section('js','')
 @section('content')
     <div class="content-wrapper">
-     @include('partials.content_header',['name'=>'Home','key'=>' '])
+     @include('partials.content_header',['name'=>'frontend.home','key'=>' '])
 
         <!-- Main content -->
         <div class="content">

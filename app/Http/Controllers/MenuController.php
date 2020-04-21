@@ -28,6 +28,7 @@ class MenuController extends Controller
     {
         $htmlOption = $this->menuRecusive->menuRecusiveAdd();
         return view(MENU_ADD, compact('htmlOption'));
+        dd($htmlOption);
 
     }
 

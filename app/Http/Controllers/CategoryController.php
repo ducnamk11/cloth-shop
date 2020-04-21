@@ -14,12 +14,12 @@ class CategoryController extends Controller
     public function __construct(Category $category)
     {
         $this->category = $category;
-    }
+     }
 
     public function index()
     {
-        $categories = $this->category->latest()->paginate(8);
-        return view(CATEGORY_INDEX, compact('categories'));
+         $categories = $this->category->latest()->paginate(8);
+        return view(CATEGORY_INDEX, compact('categories' ));
     }
 
     public function add()
@@ -27,7 +27,6 @@ class CategoryController extends Controller
         $htmlOption = $this->getCategory($parentId = '');
         return view('admin.category.add', compact('htmlOption'));
     }
-
 
     public function store(Request $request)
     {
@@ -40,16 +39,14 @@ class CategoryController extends Controller
         return redirect()->route(CATEGORY_INDEX);
     }
 
-
-
     public function edit($id)
     {
         $category = $this->category->find($id);
         $htmlOption = $this->getCategory($category->parent_id);
-         return view(CATEGORY_EDIT, compact('category','htmlOption'));
-
+        return view(CATEGORY_EDIT, compact('category', 'htmlOption'));
     }
- public function update(Request $request, $id)
+
+    public function update(Request $request, $id)
     {
         $this->category->find($id)->update([
             'name' => $request->name,
@@ -57,7 +54,6 @@ class CategoryController extends Controller
             'slug' => Str::slug($request->name)
         ]);
         return redirect()->route(CATEGORY_INDEX);
-
     }
 
     public function delete($id)
@@ -65,6 +61,7 @@ class CategoryController extends Controller
         $this->category->find($id)->delete();
         return redirect()->route(CATEGORY_INDEX);
     }
+
     public function getCategory($parentId)
     {
         $data = $this->category->all();
@@ -72,4 +69,6 @@ class CategoryController extends Controller
         $htmlOption = $recusive->CategoryRecusive($parentId);
         return $htmlOption;
     }
+
+
 }

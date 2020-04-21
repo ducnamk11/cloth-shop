@@ -4,7 +4,7 @@
 @section('js','')
 @section('content')
     <div class="content-wrapper">
-        @include('partials.content_header',['name'=>'Category','key'=>'Add'])
+        @include('partials.content_header',['name'=>'Menu','key'=>'Add'])
         <div class="content">
             <div class="container-fluid">
                 <div class="row">

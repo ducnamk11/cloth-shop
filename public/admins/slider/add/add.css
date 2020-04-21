@@ -1,0 +1,19 @@
+.select2-selection__choice{
+    background-color: black !important;,
+}
+.select2-selection--single{
+    height: 38px!important;
+}
+.container-image-detail , .container-image-feature{
+    margin-top: 15px;
+}
+.feature_image{
+    width: 250px;
+}
+
+.alert-danger{
+    padding: 3px;
+    margin-top: 5px;
+    background: #ffaeb5;
+    color: #000;
+}

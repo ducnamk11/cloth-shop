@@ -42,9 +42,9 @@
                                     <td>{{optional($product->category)->name}}</td>
                                     <td>
                                         <a class="btn btn-default" href="{{route(PRODUCT_EDIT,['id'=>$product->id])}}">Sửa</a>
-                                        <a   data-url="{{route(PRODUCT_DELETE,['id'=>$product->id])}}" class="btn btn-danger action_delete"
-                                           >Xoá</a>
-{{--                                        href="{{route(PRODUCT_DELETE,['id'=>$product->id])}}"--}}
+                                        <a data-url="{{route(PRODUCT_DELETE,['id'=>$product->id])}}"
+                                           class="btn btn-danger action_delete"
+                                        >Xoá</a>
                                     </td>
                                 </tr>
                             @endforeach

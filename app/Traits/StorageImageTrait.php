@@ -20,7 +20,6 @@ trait StorageImageTrait
             return $dataUpload;
         } else {
             return null;
-
         }
     }
 

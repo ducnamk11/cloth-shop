@@ -15,9 +15,9 @@ function actionDelete(event) {
             $.ajax({
                 type: 'GET',
                 url: urlRequest,
-                success: function (data) {
+                 success: function (data) {
                     if (data.code == 200) {
-                        that.parent().parent().remove();
+                        that.parent().parent().parent().remove();
                         Swal.fire(
                             'Deleted!',
                             'Your file has been deleted.',
