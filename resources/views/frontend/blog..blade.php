@@ -88,9 +88,9 @@
 							<ul class="nav navbar-nav">
 								<li><a href=""><i class="fa fa-user"></i> Account</a></li>
 								<li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>
-								<li><a href="checkout..blade.php"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-								<li><a href="cart..blade.php"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-								<li><a href="login..blade.php"><i class="fa fa-lock"></i> Login</a></li>
+								<li><a href="checkout.blade.php"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+								<li><a href="cart.blade.php"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+								<li><a href="login.blade.php"><i class="fa fa-lock"></i> Login</a></li>
 							</ul>
 						</div>
 					</div>
@@ -115,11 +115,11 @@
 								<li><a href="index.html">Home</a></li>
 								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="shop..blade.php">Products</a></li>
-										<li><a href="product-details..blade.php">Product Details</a></li>
-										<li><a href="checkout..blade.php">Checkout</a></li>
-										<li><a href="cart..blade.php">Cart</a></li>
-										<li><a href="login..blade.php">Login</a></li>
+                                        <li><a href="shop.blade.php">Products</a></li>
+										<li><a href="product-details.blade.php">Product Details</a></li>
+										<li><a href="checkout.blade.php">Checkout</a></li>
+										<li><a href="cart.blade.php">Cart</a></li>
+										<li><a href="login.blade.php">Login</a></li>
                                     </ul>
                                 </li>
 								<li class="dropdown"><a href="#" class="active">Blog<i class="fa fa-angle-down"></i></a>

@@ -44,7 +44,7 @@
                                                      src="{{asset($productImageItem->image_path)}}">
                                             </div>
                                         @endforeach
-                                        <input name="image_path[]" type="file" class="form-control-file"
+                                        <input multiple name="image_path[]" type="file" class="form-control-file">
 
                                     </div>
                                 </div>

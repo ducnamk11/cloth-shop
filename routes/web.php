@@ -15,9 +15,20 @@ Route::get('/admin', 'AdminController@loginAdmin')->name(ADMIN_LOGIN);
 Route::post('/admin', 'AdminController@postLoginAdmin')->name(ADMIN_LOGIN);
 Route::get('/', 'FrontendController@home')->name(HOME);
 Route::get('frontend/category/{id}', 'FrontendController@category')->name(CATEGORY_DETAIL);
+Route::get('frontend/product/{id}', 'FrontendController@product')->name(PRODUCT_DETAIL);
+Route::post('frontend/product/{id}', 'FrontendController@comment')->name(PRODUCT_COMMENT);
+Route::group(['prefix' => 'frontend/cart/'], function () {
+    Route::get('/', 'CartController@index');
+    Route::get('/add/{id}', 'CartController@add')->name(CART_ADD);
+     Route::get('update', 'CartController@update')->name(CART_UPDATE);
+    Route::get('/delete/{id?}', 'CartController@delete')->name(CART_DELETE);
+    Route::get('/checkout', 'CartController@checkOut')->name(CART_CHECKOUT);
+});
 
 Route::group(['prefix' => 'admin'], function () {
-    Route::get('/home', function () { return view('admin/home'); })->name(ADMIN_HOME);
+    Route::get('/home', function () {
+        return view('admin/home');
+    })->name(ADMIN_HOME);
     Route::group(['prefix' => 'categories'], function () {
         Route::get('/', 'CategoryController@index')->name(CATEGORY_INDEX);
         Route::get('/add', 'CategoryController@add')->name(CATEGORY_ADD);
